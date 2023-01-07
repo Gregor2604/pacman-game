@@ -13,6 +13,7 @@ let createRect = (x, y, width, height, color) =>{
 let fps = 30;
 let pacman;
 let oneBlockSize = 20;
+let wallColor = "#342DCA";
 let score = 0;
 let ghosts = [];
 let wallSpaceWidth = oneBlockSize / 1.6;
@@ -59,8 +60,11 @@ let update = () => {
 };
 
 let draw = () => {
+    createRect(0, 0, canvas.width, canvas.height, "black");
     drawWalls();
 };
+
+
 
 let gameInterval = setInterval(gameLoop, 1000 / fps);
 
@@ -77,7 +81,7 @@ let  drawWalls = () =>{
                     i * oneBlockSize, 
                     oneBlockSize, 
                     oneBlockSize,
-                    "#342DCA"
+                    wallColor
                 );
             }
         }
