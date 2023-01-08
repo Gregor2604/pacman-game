@@ -3,10 +3,19 @@ const canvasContext = canvas.getContext("2d");
 const pacmanFrames = document.getElementById("animation");
 const ghostFrames = document.getElementById("animation");
 
+
+//This is needed for the wall-drawing process
 let createRect = (x, y, width, height, color) =>{
     canvasContext.fillStyle = color;
     canvasContext.fillRect(x, y, width, height);
 }
+
+
+//This will be the movement control
+const DIRECTION_RIGHT = 4;
+const DIRECTION_UP = 3;
+const DIRECTION_LEFT = 2;
+const DIRECTION_BOTTOM = 1;
 
 
 // Game variables
@@ -19,6 +28,8 @@ let ghosts = [];
 let wallSpaceWidth = oneBlockSize / 1.5;
 let wallOffset = (oneBlockSize - wallSpaceWidth) / 2;
 let wallInnerColor = "black";
+
+
 
 // This will be the Map!
 // 0 = No Wall, you can't move there
