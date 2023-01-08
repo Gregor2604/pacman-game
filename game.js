@@ -80,6 +80,22 @@ let update = () => {
     pacman.moveProcess()
 };
 
+let drawFoods = () => {
+    for (let i = 0; i < map.length; i++) {
+        for (let j = 0; j < map[0].length; j++) {
+            if (map[i][j] == 2) {
+                createRect(
+                    j * oneBlockSize + oneBlockSize / 3,
+                    i * oneBlockSize + oneBlockSize / 3,
+                    oneBlockSize / 3,
+                    oneBlockSize / 3,
+                    "#FEB897"
+                );
+            }
+        }
+    }
+};
+
 let draw = () => {
     createRect(0, 0, canvas.width, canvas.height, "black");
     drawWalls();
