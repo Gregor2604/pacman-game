@@ -1,7 +1,7 @@
 const canvas = document.getElementById("canvas");
 const canvasContext = canvas.getContext("2d");
-const pacmanFrames = document.getElementById("animation");
-const ghostFrames = document.getElementById("animation");
+const pacmanFrames = document.getElementById("animations");
+const ghostFrames = document.getElementById("ghosts");
 
 
 //This is needed for the wall-drawing process

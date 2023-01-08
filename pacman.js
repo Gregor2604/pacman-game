@@ -87,9 +87,10 @@ class Pacman {
     changeDirectionIfPossible() {
 
     }
-
-    changeAnimation() { // Using following Code the Pacman won't stop to animate
-        this.currentFrame = this.currentFrame = this.frameCount ? 1 : this.currentFrame + 1;
+    
+    changeAnimation() {// Using following Code the Pacman won't stop to animate
+        this.currentFrame =
+            this.currentFrame == this.frameCount ? 1 : this.currentFrame + 1;
     }
 
     draw() {
