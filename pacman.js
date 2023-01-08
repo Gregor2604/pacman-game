@@ -20,8 +20,21 @@ class Pacman {
 
     }
 
-    moveBackwards() {
-
+    moveBackwards() { // Here you only have to switch the "+=" and the "-="
+        switch (this.direction) {
+            case DIRECTION_RIGHT: 
+                this.x -= this.speed;
+                break;
+            case DIRECTION_UP:
+                this.y += this.speed;
+                break;
+            case DIRECTION_LEFT:
+                this.x += this.speed;
+                break;
+            case DIRECTION_BOTTOM:
+                this.y -= this.speed;
+                break;
+        }
     }
 
     moveForwards() {
