@@ -85,7 +85,16 @@ class Pacman {
     }
 
     changeDirectionIfPossible() {
-
+        if (this.direction == this.nextDirection) return;
+        let tempDirection = this.direction;
+        this.direction = this.nextDirection;
+        this.moveForwards();
+        if (this.checkCollisions()) {
+            this.moveBackwards();
+            this.direction = tempDirection;
+        } else {
+            this.moveBackwards();
+        }
     }
     
     changeAnimation() {// Using following Code the Pacman won't stop to animate
