@@ -1,11 +1,13 @@
 class Pacman {
     constructor (x, y, width, height) {
-        this.x = x
-        this.y = y
-        this.width = width
-        this.height = height
-        this.speed = this.speed
-        this.direction = DIRECTION_RIGHT //This will be the Start Direction
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.speed = this.speed;
+        this.direction = DIRECTION_RIGHT; //This will be the Start Direction
+        this.currentFrame = 1;
+        this.frameCount = 7;
     }
 
     moveProcess() {
@@ -54,10 +56,27 @@ class Pacman {
         }
     }
 
-    checkCollision() {
-
+   checkCollisions() {
+        let isCollided = false;
+        if (
+            map[parseInt(this.y / oneBlockSize)][
+                parseInt(this.x / oneBlockSize)
+            ] == 1 ||
+            map[parseInt(this.y / oneBlockSize + 0.9999)][
+                parseInt(this.x / oneBlockSize)
+            ] == 1 ||
+            map[parseInt(this.y / oneBlockSize)][
+                parseInt(this.x / oneBlockSize + 0.9999)
+            ] == 1 ||
+            map[parseInt(this.y / oneBlockSize + 0.9999)][
+                parseInt(this.x / oneBlockSize + 0.9999)
+            ] == 1
+            ) {
+            isCollided = true;
+        }
+        return isCollided;
     }
-
+    
     checkGhostCollision() {
 
     }
