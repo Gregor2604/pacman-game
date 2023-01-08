@@ -73,4 +73,27 @@ class Pacman {
     draw() {
         
     }
+
+
+    // These 4 Functions define the Location / Coordinates of the Pacman
+    getMapX() {
+        let mapX = parseInt(this.x / oneBlockSize);
+        return mapX;
+    }
+
+    getMapY() {
+        let mapY = parseInt(this.y / oneBlockSize);
+        return mapY;
+    }
+
+    getMapXRightSide() {
+        let mapX = parseInt((this.x * 0.99 + oneBlockSize) / oneBlockSize);
+        return mapX;
+    }
+
+    getMapYRightSide() {
+        let mapY = parseInt((this.y * 0.99 + oneBlockSize) / oneBlockSize);
+        return mapY;
+    }
+
 }
