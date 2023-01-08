@@ -61,18 +61,29 @@ let map = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
 
+let createNewPacman = () => {
+    pacman = new Pacman(
+        oneBlockSize,
+        oneBlockSize,
+        oneBlockSize,
+        oneBlockSize,
+        oneBlockSize / 5
+    );
+};
+
 let gameLoop = () => {
     update();
     draw();
 };
 
 let update = () => {
-    
+    pacman.moveProcess()
 };
 
 let draw = () => {
     createRect(0, 0, canvas.width, canvas.height, "black");
     drawWalls();
+    pacman.draw();
 };
 
 
@@ -138,3 +149,6 @@ let  drawWalls = () =>{
         }
     }
 };
+
+createNewPacman();
+gameLoop();

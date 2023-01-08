@@ -8,6 +8,9 @@ class Pacman {
         this.direction = DIRECTION_RIGHT; //This will be the Start Direction
         this.currentFrame = 1;
         this.frameCount = 7;
+        setInterval(() => {
+            this.changeAnimation();
+        }, 100);
     }
 
     moveProcess() {
@@ -56,7 +59,7 @@ class Pacman {
         }
     }
 
-   checkCollisions() {
+   checkCollision() {
         let isCollided = false;
         if (
             map[parseInt(this.y / oneBlockSize)][
@@ -85,12 +88,35 @@ class Pacman {
 
     }
 
-    changeAnimation() {
-
+    changeAnimation() { // Using following Code the Pacman won't stop to animate
+        this.currentFrame = this.currentFrame = this.frameCount ? 1 : this.currentFrame + 1;
     }
 
     draw() {
-        
+        canvasContext.save();
+        canvasContext.translate(
+            this.x + oneBlockSize / 2,
+            this.y + oneBlockSize / 2
+        );
+
+        canvasContext.rotate((this.direction * 90 * Math.PI) / 180);
+        canvasContext.translate(
+            -this.x - oneBlockSize / 2,
+            -this.y - oneBlockSize / 2
+        );
+
+        canvasContext.drawImage(
+            pacmanFrames,
+            (this.currentFrame - 1) * oneBlockSize,
+            0,
+            oneBlockSize,
+            oneBlockSize,
+            this.x,
+            this.y,
+            this.width,
+            this.height
+        );
+        canvasContext.restore();
     }
 
 
