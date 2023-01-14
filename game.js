@@ -28,6 +28,7 @@ let ghosts = [];
 let wallSpaceWidth = oneBlockSize / 1.5;
 let wallOffset = (oneBlockSize - wallSpaceWidth) / 2;
 let wallInnerColor = "black";
+let foodColor = "#FEB897";
 
 
 
@@ -90,7 +91,7 @@ let drawFoods = () => {
                     i * oneBlockSize + oneBlockSize / 3,
                     oneBlockSize / 3,
                     oneBlockSize / 3,
-                    "#FEB897"
+                    foodColor
                 );
             }
         }
