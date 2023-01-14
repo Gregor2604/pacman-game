@@ -100,7 +100,7 @@ class Pacman {
         let tempDirection = this.direction;
         this.direction = this.nextDirection;
         this.moveForwards();
-        if (this.checkCollisions()) {
+        if (this.checkCollision()) {
             this.moveBackwards();
             this.direction = tempDirection;
         } else {
