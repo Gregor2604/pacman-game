@@ -91,8 +91,17 @@ class Pacman {
         return isCollided;
     }
     
-    checkGhostCollision() {
-
+    checkGhostCollision(ghosts) {
+        for (let i = 0; i < ghosts.length; i++) {
+            let ghost = ghosts[i];
+            if (
+                ghost.getMapX() == this.getMapX() &&
+                ghost.getMapY() == this.getMapY()
+            ) {
+                return true;
+            }
+        }
+        return false;
     }
 
     changeDirectionIfPossible() {
@@ -107,7 +116,29 @@ class Pacman {
             this.moveBackwards();
         }
     }
-    
+
+
+    // These 4 Functions define the Location / Coordinates of the Pacman
+    getMapX() {
+        let mapX = parseInt(this.x / oneBlockSize);
+        return mapX;
+    }
+
+    getMapY() {
+        let mapY = parseInt(this.y / oneBlockSize);
+        return mapY;
+    }
+
+    getMapXRightSide() {
+        let mapX = parseInt((this.x * 0.99 + oneBlockSize) / oneBlockSize);
+        return mapX;
+    }
+
+    getMapYRightSide() {
+        let mapY = parseInt((this.y * 0.99 + oneBlockSize) / oneBlockSize);
+        return mapY;
+    }
+
     changeAnimation() {// Using following Code the Pacman won't stop to animate
         this.currentFrame =
             this.currentFrame == this.frameCount ? 1 : this.currentFrame + 1;
@@ -138,28 +169,6 @@ class Pacman {
             this.height
         );
         canvasContext.restore();
-    }
-
-
-    // These 4 Functions define the Location / Coordinates of the Pacman
-    getMapX() {
-        let mapX = parseInt(this.x / oneBlockSize);
-        return mapX;
-    }
-
-    getMapY() {
-        let mapY = parseInt(this.y / oneBlockSize);
-        return mapY;
-    }
-
-    getMapXRightSide() {
-        let mapX = parseInt((this.x * 0.99 + oneBlockSize) / oneBlockSize);
-        return mapX;
-    }
-
-    getMapYRightSide() {
-        let mapY = parseInt((this.y * 0.99 + oneBlockSize) / oneBlockSize);
-        return mapY;
     }
 
 }
