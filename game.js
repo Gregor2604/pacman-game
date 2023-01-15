@@ -174,16 +174,16 @@ gameLoop();
 window.addEventListener("keydown", (event) => {
     let k = event.keyCode;
     setTimeout(() => {
-        if (k == 37 || k == 65) {
+        if (k == 37) {
             // left arrow or a
             pacman.nextDirection = DIRECTION_LEFT;
-        } else if (k == 38 || k == 87) {
+        } else if (k == 38) {
             // up arrow or w
             pacman.nextDirection = DIRECTION_UP;
-        } else if (k == 39 || k == 68) {
+        } else if (k == 39) {
             // right arrow or d
             pacman.nextDirection = DIRECTION_RIGHT;
-        } else if (k == 40 || k == 83) {
+        } else if (k == 40) {
             // bottom arrow or s
             pacman.nextDirection = DIRECTION_BOTTOM;
         }

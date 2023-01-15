@@ -15,7 +15,7 @@ class Pacman {
 
     moveProcess() {
         this. changeDirectionIfPossible();
-        this.moveForwards()
+        this.moveForwards();
         if (this.checkCollision()) {
             this.moveBackwards();
         }
