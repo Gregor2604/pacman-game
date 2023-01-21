@@ -1,23 +1,25 @@
 class Pacman {
-    constructor (x, y, width, height) {
+    constructor(x, y, width, height, speed) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-        this.speed = this.speed;
-        this.direction = DIRECTION_RIGHT; //This will be the Start Direction
-        this.currentFrame = 1;
+        this.speed = speed;
+        this.direction = 4;
+        this.nextDirection = 4;
         this.frameCount = 7;
+        this.currentFrame = 1;
         setInterval(() => {
             this.changeAnimation();
         }, 100);
     }
 
     moveProcess() {
-        this. changeDirectionIfPossible();
+        this.changeDirectionIfPossible();
         this.moveForwards();
-        if (this.checkCollision()) {
+        if (this.checkCollisions()) {
             this.moveBackwards();
+            return;
         }
     }
 
@@ -36,41 +38,41 @@ class Pacman {
         }
     }
 
-    moveBackwards() { // Here you only have to switch the "+=" and the "-="
+    moveBackwards() {
         switch (this.direction) {
-            case DIRECTION_RIGHT: 
+            case DIRECTION_RIGHT: // Right
                 this.x -= this.speed;
                 break;
-            case DIRECTION_UP:
+            case DIRECTION_UP: // Up
                 this.y += this.speed;
                 break;
-            case DIRECTION_LEFT:
+            case DIRECTION_LEFT: // Left
                 this.x += this.speed;
                 break;
-            case DIRECTION_BOTTOM:
+            case DIRECTION_BOTTOM: // Bottom
                 this.y -= this.speed;
                 break;
         }
     }
 
     moveForwards() {
-        switch(this.direction) {
-            case DIRECTION_RIGHT:
-                this.x += this.speed // I write "+=" because the start direction is right
+        switch (this.direction) {
+            case DIRECTION_RIGHT: // Right
+                this.x += this.speed;
                 break;
-            case DIRECTION_UP:
-                this.y -= this.speed
+            case DIRECTION_UP: // Up
+                this.y -= this.speed;
                 break;
-            case DIRECTION_LEFT:
-                this.x -= this.speed
+            case DIRECTION_LEFT: // Left
+                this.x -= this.speed;
                 break;
-            case DIRECTION_BOTTOM:
-                this.y += this.speed
+            case DIRECTION_BOTTOM: // Bottom
+                this.y += this.speed;
                 break;
         }
     }
 
-   checkCollision() {
+    checkCollisions() {
         let isCollided = false;
         if (
             map[parseInt(this.y / oneBlockSize)][
@@ -85,12 +87,12 @@ class Pacman {
             map[parseInt(this.y / oneBlockSize + 0.9999)][
                 parseInt(this.x / oneBlockSize + 0.9999)
             ] == 1
-            ) {
+        ) {
             isCollided = true;
         }
         return isCollided;
     }
-    
+
     checkGhostCollision(ghosts) {
         for (let i = 0; i < ghosts.length; i++) {
             let ghost = ghosts[i];
@@ -109,7 +111,7 @@ class Pacman {
         let tempDirection = this.direction;
         this.direction = this.nextDirection;
         this.moveForwards();
-        if (this.checkCollision()) {
+        if (this.checkCollisions()) {
             this.moveBackwards();
             this.direction = tempDirection;
         } else {
@@ -117,8 +119,6 @@ class Pacman {
         }
     }
 
-
-    // These 4 Functions define the Location / Coordinates of the Pacman
     getMapX() {
         let mapX = parseInt(this.x / oneBlockSize);
         return mapX;
@@ -126,6 +126,7 @@ class Pacman {
 
     getMapY() {
         let mapY = parseInt(this.y / oneBlockSize);
+
         return mapY;
     }
 
@@ -139,7 +140,7 @@ class Pacman {
         return mapY;
     }
 
-    changeAnimation() {// Using following Code the Pacman won't stop to animate
+    changeAnimation() {
         this.currentFrame =
             this.currentFrame == this.frameCount ? 1 : this.currentFrame + 1;
     }
@@ -150,13 +151,11 @@ class Pacman {
             this.x + oneBlockSize / 2,
             this.y + oneBlockSize / 2
         );
-
         canvasContext.rotate((this.direction * 90 * Math.PI) / 180);
         canvasContext.translate(
             -this.x - oneBlockSize / 2,
             -this.y - oneBlockSize / 2
         );
-
         canvasContext.drawImage(
             pacmanFrames,
             (this.currentFrame - 1) * oneBlockSize,
@@ -170,5 +169,4 @@ class Pacman {
         );
         canvasContext.restore();
     }
-
 }
